@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2007, 2008, 2009, 2010, 2011, 2013, 2014, 2015 CERN.
+# Copyright (C) 2007, 2008, 2009, 2010, 2011, 2013, 2014, 2015, 2016 CERN.
 #
 # Invenio is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -23,6 +23,21 @@ from __future__ import unicode_literals
 
 import re
 
+try:
+    from shutil import which
+except ImportError:
+    # CPython <3.3
+    from distutils.spawn import find_executable as which
+
+
+CLASSIFIER_WORKDIR = None
+"""Path to directory for classifier related files, default: instance_path."""
+
+CLASSIFIER_PATH_GFILE = which("file")
+"""Path to file executable."""
+
+CLASSIFIER_PATH_PDFTOTEXT = which("pdftotext")
+"""Path to pdf2text executable."""
 
 CLASSIFIER_DEFAULT_OUTPUT_NUMBER = 20
 """Number of keywords that are printed by default.

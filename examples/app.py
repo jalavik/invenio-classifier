@@ -22,23 +22,23 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-include *.py
-include *.rst
-include *.txt
-include *.sh
-include LICENSE
-include .tx/config
-include pytest.ini
-include .dockerignore
-include .editorconfig
-include tox.ini
 
-recursive-include examples *.py
-recursive-include invenio_classifier *.po
-recursive-include invenio_classifier *.pot
-recursive-include docs *.bat
-recursive-include docs *.py
-recursive-include docs *.rst
-recursive-include docs Makefile
-recursive-include tests *.py
-recursive-include tests *.rdf
+"""Minimal Flask application example for development.
+
+Run example development server:
+
+.. code-block:: console
+
+   $ cd examples
+   $ flask -a app.py --debug run
+"""
+
+from __future__ import absolute_import, print_function
+
+from flask import Flask
+
+from invenio_classifier import InvenioClassifier
+
+# Create Flask application
+app = Flask(__name__)
+InvenioClassifier(app)

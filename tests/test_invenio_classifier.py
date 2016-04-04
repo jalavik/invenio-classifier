@@ -22,23 +22,33 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-include *.py
-include *.rst
-include *.txt
-include *.sh
-include LICENSE
-include .tx/config
-include pytest.ini
-include .dockerignore
-include .editorconfig
-include tox.ini
 
-recursive-include examples *.py
-recursive-include invenio_classifier *.po
-recursive-include invenio_classifier *.pot
-recursive-include docs *.bat
-recursive-include docs *.py
-recursive-include docs *.rst
-recursive-include docs Makefile
-recursive-include tests *.py
-recursive-include tests *.rdf
+"""Module extension tests."""
+
+from __future__ import absolute_import, print_function
+
+from flask import Flask
+from flask_cli import FlaskCLI
+
+from invenio_classifier import InvenioClassifier
+
+
+def test_version():
+    """Test version import."""
+    from invenio_classifier import __version__
+    assert __version__
+
+
+def test_init():
+    """Test extension initialization."""
+    app = Flask('testapp')
+    FlaskCLI(app)
+    ext = InvenioClassifier(app)
+    assert 'invenio-classifier' in app.extensions
+
+    app = Flask('testapp')
+    FlaskCLI(app)
+    ext = InvenioClassifier()
+    assert 'invenio-classifier' not in app.extensions
+    ext.init_app(app)
+    assert 'invenio-classifier' in app.extensions
