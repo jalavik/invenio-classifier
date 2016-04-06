@@ -504,21 +504,21 @@ def _skw_matches_comparator(kw0, kw1):
     First by the number of their spans (ie. how many times they were found),
     if it is equal it compares them by lenghts of their labels.
     """
-    def cmp(a, b):
+    def compare(a, b):
         return (a > b) - (a < b)
 
-    list_comparison = cmp(len(kw1[1][0]), len(kw0[1][0]))
+    list_comparison = compare(len(kw1[1][0]), len(kw0[1][0]))
     if list_comparison:
         return list_comparison
 
     if kw0[0].isComposite() and kw1[0].isComposite():
         component_avg0 = sum(kw0[1][1]) / len(kw0[1][1])
         component_avg1 = sum(kw1[1][1]) / len(kw1[1][1])
-        component_comparison = cmp(component_avg1, component_avg0)
+        component_comparison = compare(component_avg1, component_avg0)
         if component_comparison:
             return component_comparison
 
-    return cmp(len(str(kw1[0])), len(str(kw0[0])))
+    return compare(len(str(kw1[0])), len(str(kw0[0])))
 
 
 def _kw(keywords):

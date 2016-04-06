@@ -25,6 +25,17 @@
 API Docs
 ========
 
-invenio_classifier
-------------------
 
+Extraction API
+--------------
+.. automodule:: invenio_classifier.api
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Flask extension
+---------------
+.. automodule:: invenio_classifier.ext
+   :members:
+   :undoc-members:

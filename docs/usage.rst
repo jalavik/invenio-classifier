@@ -26,3 +26,4 @@ Usage
 =====
 
 .. automodule:: invenio_classifier
+    :members: get_keywords_from_text, get_keywords_from_local_file
